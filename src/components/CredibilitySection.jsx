@@ -2,28 +2,23 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { Shield, Award, TrendingUp, BarChart3 } from 'lucide-react'
 
 const CredibilitySection = () => {
-  // Datos simulados para el gráfico de equity curve (basados en los datos reales proporcionados)
+  // Datos simulados para el gráfico de equity curve (basados en los datos reales 2018-2024)
   const equityData = [
-    { year: '2014', value: 10000 },
-    { year: '2015', value: 12500 },
-    { year: '2016', value: 18200 },
-    { year: '2017', value: 25800 },
-    { year: '2018', value: 31200 },
-    { year: '2019', value: 45500 },
-    { year: '2020', value: 63300 },
-    { year: '2021', value: 82700 },
-    { year: '2022', value: 95600 },
-    { year: '2023', value: 105900 },
-    { year: '2024', value: 125400 },
-    { year: '2025', value: 113241 }
+    { year: '2018', value: 10000 },
+    { year: '2019', value: 15200 },
+    { year: '2020', value: 18800 },
+    { year: '2021', value: 28500 },
+    { year: '2022', value: 35600 },
+    { year: '2023', value: 48200 },
+    { year: '2024', value: 58400 }
   ]
 
   const badges = [
     {
       icon: Shield,
       title: "Crisis-Tested",
-      subtitle: "Probado en 3 Crisis Mayores",
-      description: "2008 Financial Crisis, COVID-19 Pandemic, 2022 Market Volatility",
+      subtitle: "Probado en 2 Crisis Mayores",
+      description: "COVID-19 Pandemic (2020), Inflation Crisis (2022)",
       color: "green"
     },
     {
@@ -35,16 +30,16 @@ const CredibilitySection = () => {
     },
     {
       icon: TrendingUp,
-      title: "Sharpe Ratio 12.98",
+      title: "Sharpe Ratio 7.35",
       subtitle: "Rendimiento Ajustado por Riesgo",
       description: "Muy superior al promedio del mercado (0.5-1.0)",
       color: "blue"
     },
     {
       icon: BarChart3,
-      title: "10+ Años de Datos",
-      subtitle: "Historial Verificable",
-      description: "Más de 10,651 operaciones documentadas",
+      title: "7 Años de Datos",
+      subtitle: "Historial Verificable (2018-2024)",
+      description: "Más de 20,000 operaciones documentadas",
       color: "purple"
     }
   ]

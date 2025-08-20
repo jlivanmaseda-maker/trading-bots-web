@@ -11,12 +11,12 @@ const HeroSection = () => {
             <div>
               <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
                 Bots de Trading con{' '}
-                <span className="text-blue-600">10+ Años</span>{' '}
+                <span className="text-blue-600">7 Años</span>{' '}
                 de Historial Probado
               </h1>
               <p className="mt-6 text-xl text-gray-600 leading-relaxed">
-                Estrategias algorítmicas respaldadas por más de 10,651 operaciones ejecutadas 
-                y datos de backtesting verificables. Resultados reales, no promesas.
+                Estrategias algorítmicas respaldadas por más de 20,000 operaciones ejecutadas 
+                y datos de backtesting verificables desde 2018. Resultados reales, no promesas.
               </p>
             </div>
 

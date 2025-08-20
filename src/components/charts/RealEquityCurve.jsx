@@ -1,15 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import realPortfolioData from '../../data/real_portfolio_data.json';
+import individualBotsData from '../../data/individual_bots_data.json';
 
-const RealEquityCurve = ({ portfolioId, className = "" }) => {
+const RealEquityCurve = ({ portfolioId, dataSource = "portfolios", className = "" }) => {
   const [equityData, setEquityData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
   useEffect(() => {
     try {
-      const portfolioData = realPortfolioData.portfolios[portfolioId];
+      let portfolioData;
+      
+      if (dataSource === "individual_bots") {
+        portfolioData = individualBotsData[portfolioId];
+      } else {
+        portfolioData = realPortfolioData.portfolios[portfolioId];
+      }
+      
       if (portfolioData && portfolioData.equity_curve) {
         // Formatear datos para el gráfico
         const formattedData = portfolioData.equity_curve.map(point => ({
@@ -23,7 +31,7 @@ const RealEquityCurve = ({ portfolioId, className = "" }) => {
         
         setEquityData(formattedData);
       } else {
-        setError('No se encontraron datos de equity para este portafolio');
+        setError(`No se encontraron datos de equity para este ${dataSource === "individual_bots" ? "bot" : "portafolio"}`);
       }
     } catch (err) {
       setError('Error cargando datos de equity');
@@ -31,7 +39,7 @@ const RealEquityCurve = ({ portfolioId, className = "" }) => {
     } finally {
       setLoading(false);
     }
-  }, [portfolioId]);
+  }, [portfolioId, dataSource]);
   
   if (loading) {
     return (

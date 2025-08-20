@@ -1,9 +1,13 @@
-import { useParams, Link } from 'react-router-dom';
+import React from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Download, TrendingUp, Target, Clock, DollarSign, BarChart3, Shield } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
 import { Separator } from '../components/ui/separator';
+import RealEquityCurve from '../components/charts/RealEquityCurve';
+import DrawdownChart from '../components/charts/DrawdownChart';
+import individualBotsData from '../data/individual_bots_data.json';
 
 // Datos de ejemplo de bots (en producción vendrían de una API o base de datos)
 const botsData = {
@@ -323,24 +327,42 @@ export default function BotDetailPage() {
         </CardContent>
       </Card>
 
-      {/* Gráfico de Rendimiento (Placeholder) */}
-      <Card className="mb-8">
-        <CardHeader>
-          <CardTitle>Curva de Equity</CardTitle>
-          <CardDescription>
-            Evolución del rendimiento durante el período de backtesting
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="h-64 bg-gray-50 rounded-lg flex items-center justify-center">
-            <div className="text-center text-gray-500">
-              <BarChart3 className="h-12 w-12 mx-auto mb-2" />
-              <p>Gráfico de rendimiento</p>
-              <p className="text-sm">(Se implementará con datos reales)</p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+      {/* Gráficos de Rendimiento */}
+      <div className="grid md:grid-cols-1 gap-6 mb-8">
+        {/* Curva de Equity */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Curva de Equity</CardTitle>
+            <CardDescription>
+              Evolución del rendimiento durante el período de backtesting (2018-2024)
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <RealEquityCurve 
+              portfolioId={bot.id.replace(/-/g, '_')} 
+              dataSource="individual_bots"
+              className="h-80"
+            />
+          </CardContent>
+        </Card>
+
+        {/* Gráfico de Drawdown */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Análisis de Drawdown</CardTitle>
+            <CardDescription>
+              Períodos de pérdida y recuperación del bot
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <DrawdownChart 
+              portfolioId={bot.id.replace(/-/g, '_')} 
+              dataSource="individual_bots"
+              className="h-64"
+            />
+          </CardContent>
+        </Card>
+      </div>
 
       {/* Call to Action */}
       <Card className="bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200">
