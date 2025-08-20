@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { TrendingDown, AlertTriangle, Clock } from 'lucide-react';
 import realPortfolioData from '../../data/real_portfolio_data.json';
-import individualBotsData from '../../data/individual_bots_data.json';
 
-const DrawdownChart = ({ portfolioId, dataSource = "portfolios", className = "" }) => {
+const DrawdownChart = ({ portfolioId, className = "" }) => {
   const [drawdownData, setDrawdownData] = useState([]);
   const [stats, setStats] = useState({});
   const [loading, setLoading] = useState(true);
@@ -12,19 +11,10 @@ const DrawdownChart = ({ portfolioId, dataSource = "portfolios", className = "" 
   
   useEffect(() => {
     try {
-      let portfolioData;
-      
-      if (dataSource === "individual_bots") {
-        portfolioData = individualBotsData[portfolioId];
-      } else {
-        portfolioData = realPortfolioData.portfolios[portfolioId];
-      }
-      
-      if (portfolioData && (portfolioData.drawdown_curve || portfolioData.drawdown_data)) {
-        const drawdownSource = portfolioData.drawdown_curve || portfolioData.drawdown_data;
-        
+      const portfolioData = realPortfolioData.portfolios[portfolioId];
+      if (portfolioData && portfolioData.drawdown_data) {
         // Formatear datos para el gráfico
-        const formattedData = drawdownSource.map(point => ({
+        const formattedData = portfolioData.drawdown_data.map(point => ({
           ...point,
           date: new Date(point.date).toLocaleDateString('es-ES', { 
             year: 'numeric', 
