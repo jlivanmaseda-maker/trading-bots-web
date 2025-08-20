@@ -5,6 +5,9 @@ import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
 import { Separator } from '../components/ui/separator';
 import { Progress } from '../components/ui/progress';
+import RealEquityCurve from '../components/charts/RealEquityCurve';
+import DrawdownChart from '../components/charts/DrawdownChart';
+import MonthlyReturnsHeatmap from '../components/charts/MonthlyReturnsHeatmap';
 
 // Datos de ejemplo de portafolios (en producción vendrían de una API o base de datos)
 const portfoliosData = {
@@ -395,25 +398,29 @@ export default function PortfolioDetailPage() {
         </Card>
       </div>
 
-      {/* Gráfico de Rendimiento (Placeholder) */}
-      <Card className="mb-8">
-        <CardHeader>
-          <CardTitle>Evolución del Portafolio</CardTitle>
-          <CardDescription>
-            Curva de equity y drawdown durante el período de backtesting
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="h-80 bg-gray-50 rounded-lg flex items-center justify-center">
-            <div className="text-center text-gray-500">
-              <BarChart3 className="h-16 w-16 mx-auto mb-4" />
-              <p className="text-lg font-medium">Gráficos de Rendimiento</p>
-              <p className="text-sm">Curva de equity, drawdown y análisis de correlaciones</p>
-              <p className="text-xs mt-2">(Se implementará con datos reales de los PDFs)</p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+      {/* Gráficos de Rendimiento Reales */}
+      <div className="space-y-8 mb-8">
+        {/* Curva de Equity */}
+        <Card>
+          <CardContent className="p-6">
+            <RealEquityCurve portfolioId="portfolio4" />
+          </CardContent>
+        </Card>
+
+        {/* Análisis de Drawdown */}
+        <Card>
+          <CardContent className="p-6">
+            <DrawdownChart portfolioId="portfolio4" />
+          </CardContent>
+        </Card>
+
+        {/* Heatmap de Retornos Mensuales */}
+        <Card>
+          <CardContent className="p-6">
+            <MonthlyReturnsHeatmap portfolioId="portfolio4" />
+          </CardContent>
+        </Card>
+      </div>
 
       {/* Call to Action */}
       <Card className="bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200">

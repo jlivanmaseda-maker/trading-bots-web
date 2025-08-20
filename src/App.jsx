@@ -8,6 +8,7 @@ import ResultadosPage from './pages/ResultadosPage.jsx';
 import ContactoPage from './pages/ContactoPage.jsx';
 import BotDetailPage from './pages/BotDetailPage.jsx';
 import PortfolioDetailPage from './pages/PortfolioDetailPage.jsx';
+import AdminPanel from './pages/AdminPanel.jsx';
 import './App.css';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
             <Route path="/bots-individuales/:botId" element={<BotDetailPage />} />
             <Route path="/resultados" element={<ResultadosPage />} />
             <Route path="/contacto" element={<ContactoPage />} />
+            <Route path="/admin" element={<AdminPanel />} />
           </Routes>
         </main>
       </div>
